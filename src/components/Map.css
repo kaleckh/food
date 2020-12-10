@@ -1,0 +1,4 @@
+.hospitals {
+    display: flex;
+    flex-direction: column;
+}
