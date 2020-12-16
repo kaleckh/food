@@ -74,7 +74,7 @@ class Login extends Component {
                   //   enrolled: tournament.enrolled,
                   //   date: tournament.date,
                   // });
-                  this.props.history.push("/home");
+                  this.props.history.push("/map");
                 });
               }}
 

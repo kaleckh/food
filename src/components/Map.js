@@ -7,18 +7,24 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      donate: false,
       hospitals: [
         "Utah Valley Hospital",
         "Utah State Hospital",
         "University of Utah Hospital",
         "Timpanogos Regional Hospital",
+        "American Fork Hospital",
+        "Heber Valley Hospital",
       ],
     };
   }
   render() {
-    const options = this.state.hospitals.map((hospital) => {
-      return { name: hospital, value: hospital };
-    })
+    const options = this.state.hospitals.map((hospital, index) => {
+      return { name: hospital, value: index };
+    });
+
+    
+
     return (
       /* <select className="hospitals" id="hospitals">
         {this.state.hospitals.map((hospital, i) => (
@@ -29,12 +35,57 @@ class Map extends Component {
       </select> */
 
       <div>
-        <SelectSearch
-          options={options}
-          search
-          emptyMessage="Not found"
-          placeholder="Select your country..."
-        />
+        <div>
+          <button
+            id="hamburger-menu"
+            data-toggle="ham-navigation"
+            class="hamburger-menu-button"
+          >
+            <span class="hamburger-menu-button-open">Menu</span>
+          </button>
+          <nav id="ham-navigation" class="ham-menu">
+            <ul class="menu">
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li class="active">
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Services</a>
+              </li>
+              <li>
+                <a href="#">Features</a>
+              </li>
+              <li>
+                <a href="#">Products</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div className="searchbar">
+          <SelectSearch
+            onChange={(event) => {
+              this.setState({
+                donate: true,
+              });
+            }}
+            options={options}
+            search
+            emptyMessage="Not found"
+            placeholder="Select your hospital..."
+          />
+        </div>
+        {this.state.donate && (
+          <div className="input">
+            <input type="number" className="inputbox" />
+            <button className="donatebutton">Donate!</button>
+          </div>
+        )}
       </div>
     );
   }
