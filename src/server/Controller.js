@@ -27,6 +27,20 @@ var login = (req, res) => {
     }
   });
 };
+let getDonations = (req, res) => {
+  const dbInstance = req.app.get("db");
+
+  dbInstance
+    .read_posts()
+    .then((posts) => res.status(200).send(posts))
+    .catch((err) => {
+      res.status(500).send({
+        errorMessage:
+          "Oops! Something went wrong. Our engineers have been informed!",
+      });
+      console.log(err);
+    });
+};
 
 module.exports = {
   createUser,

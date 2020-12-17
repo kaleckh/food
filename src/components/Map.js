@@ -7,6 +7,7 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      donated: 0,
       donate: false,
       hospitals: [
         "Utah Valley Hospital",
@@ -22,8 +23,6 @@ class Map extends Component {
     const options = this.state.hospitals.map((hospital, index) => {
       return { name: hospital, value: index };
     });
-
-    
 
     return (
       /* <select className="hospitals" id="hospitals">
@@ -79,13 +78,21 @@ class Map extends Component {
             emptyMessage="Not found"
             placeholder="Select your hospital..."
           />
+          {this.state.donate && (
+            <React.Fragment>
+              <input
+                type="number"
+                className="inputbox"
+                onChange={(event) => {
+                  this.setState = {
+                    donated: event.target.value,
+                  };
+                }}
+              />
+              <button className="donatebutton">Donate!</button>
+            </React.Fragment>
+          )}
         </div>
-        {this.state.donate && (
-          <div className="input">
-            <input type="number" className="inputbox" />
-            <button className="donatebutton">Donate!</button>
-          </div>
-        )}
       </div>
     );
   }
